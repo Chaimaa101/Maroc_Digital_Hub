@@ -1,3 +1,170 @@
 {
-    "users" :[]
+  "users": [
+    {
+      "id": 1,
+      "name": "Admin User",
+      "email": "admin@mdh.com",
+      "password": "admin123",
+      "role": "admin"
+    },
+    {
+      "id": 2,
+      "name": "Tech Startup",
+      "email": "startup@mdh.com",
+      "password": "startup123",
+      "role": "startup"
+    },
+    {
+      "id": 3,
+      "name": "Investor Pro",
+      "email": "investor@mdh.com",
+      "password": "investor123",
+      "role": "investor"
+    },
+    {
+      "id": 4,
+      "name": "Visitor User",
+      "email": "visitor@mdh.com",
+      "password": "visitor123",
+      "role": "visitor"
+    }
+  ],
+
+  "sectors": [
+    {
+      "id": 1,
+      "name": "Intelligence Artificielle",
+      "icon": "🤖",
+      "description": "Innovation basée sur l’IA et le machine learning."
+    },
+    {
+      "id": 2,
+      "name": "Fintech",
+      "icon": "💳",
+      "description": "Solutions financières numériques et paiements innovants."
+    },
+    {
+      "id": 3,
+      "name": "E-commerce",
+      "icon": "🛍️",
+      "description": "Plateformes de vente et d’achat en ligne."
+    },
+    {
+      "id": 4,
+      "name": "Tourisme",
+      "icon": "🌍",
+      "description": "Applications et plateformes dédiées au tourisme et aux voyages."
+    },
+    {
+      "id": 5,
+      "name": "Éducation",
+      "icon": "🎓",
+      "description": "Solutions EdTech pour l’apprentissage numérique."
+    },
+    {
+      "id": 6,
+      "name": "Agritech",
+      "icon": "🌾",
+      "description": "Innovation technologique pour l’agriculture durable."
+    }
+  ],
+
+  "startups": [
+    {
+      "id": 1,
+      "name": "AtlasAI",
+      "sectorId": 1,
+      "description": "Solutions d'analyse prédictive pour les entreprises marocaines.",
+      "image": "https://i.imgur.com/u8NwZQk.jpg",
+      "ownerId": 2,
+      "createdAt": "2025-10-01"
+    },
+    {
+      "id": 2,
+      "name": "FinMaroc",
+      "sectorId": 2,
+      "sector": "Fintech",
+      "description": "Application de micro-crédit digitalisée pour entrepreneurs.",
+      "image": "https://i.imgur.com/JM7zD4P.jpg",
+      "ownerId": 2,
+      "createdAt": "2025-09-29"
+    },
+    {
+      "id": 3,
+      "name": "TourisGo",
+      "sectorId": 4,
+      "sector": "Tourisme",
+      "description": "Plateforme d’expériences locales pour les touristes au Maroc.",
+      "image": "https://i.imgur.com/4oCkK8Q.jpg",
+      "ownerId": 2,
+      "createdAt": "2025-09-25"
+    },
+    {
+      "id": 4,
+      "name": "ShopEase",
+      "sectorId": 3,
+      "sector": "E-commerce",
+      "description": "Marketplace innovante dédiée aux produits marocains.",
+      "image": "https://i.imgur.com/xl3Bdcd.jpg",
+      "ownerId": 2,
+      "createdAt": "2025-09-20"
+    }
+  ],
+
+  "evenements": [
+    {
+      "id": 1,
+      "title": "Hackathon Maroc 2025",
+      "description": "Compétition de 48h pour développer des solutions digitales.",
+      "ville": "Casablanca",
+      "date": "2025-11-15",
+      "place": "Technopark Casablanca",
+      "participants": [2, 3],
+      "createdBy": 2
+    },
+    {
+      "id": 2,
+      "title": "Forum des Startups Africaines",
+      "description": "Événement de networking entre investisseurs et startups africaines.",
+      "ville": "Rabat",
+      "date": "2025-12-05",
+      "place": "UM6P Rabat",
+      "participants": [3],
+      "createdBy": 3
+    },
+    {
+      "id": 3,
+      "title": "Fintech Days 2025",
+      "description": "Conférences et ateliers sur l'innovation financière.",
+      "ville": "Marrakech",
+      "date": "2025-10-20",
+      "place": "Palmeraie Conference Center",
+      "participants": [2, 3, 4],
+      "createdBy": 2
+    }
+  ],
+
+  "forum": [
+    {
+      "id": 1,
+      "userId": 3,
+      "username": "Investor Pro",
+      "content": "Quels sont les secteurs les plus prometteurs pour 2025 selon vous ?",
+      "createdAt": "2025-10-01T10:30:00"
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "username": "Tech Startup",
+      "content": "L’IA et la Fintech dominent actuellement les levées de fonds.",
+      "createdAt": "2025-10-01T11:00:00"
+    },
+    {
+      "id": 3,
+      "userId": 4,
+      "username": "Visitor User",
+      "content": "Merci pour vos conseils ! Où puis-je suivre les prochains événements ?",
+      "createdAt": "2025-10-02T09:00:00"
+    }
+  ]
 }
