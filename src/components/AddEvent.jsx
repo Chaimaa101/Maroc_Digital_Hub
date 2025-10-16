@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { ajouter, fetchData } from "../store/GlobalSlice";
 
-
-function AddStartup() {
+function AddEvent() {
+  
   const dispatch = useDispatch();
   const sectors = useSelector((state) => state.allData.data.sectors || [])
 
@@ -39,18 +39,18 @@ function AddStartup() {
   };
 
   const onSubmit = (data) => {
-
-
-    const startupData = {
-      name: data.name,
-      sectorId: data.sector,
+ 
+    const eventData = {
+      titre: data.titre,
+      ville: data.ville,
       date: data.date,
+      place: data.place,
       description: data.description,
       image: imagePreview || startup.image || "default.jpg",
     };
 
-      dispatch(ajouter({ section: "startups", newItem: startupData }));
-      console.log("Ajout :", startupData);
+      dispatch(ajouter({ section: "evenements", newItem: eventData }));
+      console.log("Ajout :", eventData);
 
     reset();
     setImagePreview(null);
@@ -60,49 +60,79 @@ function AddStartup() {
   return (
     <div className=" rounded-xl shadow-lg w-full max-w-2xl mx-auto p-10">
       <h2 className="text-2xl font-bold text-center text-[#222e53] mb-8">
-        Ajouter une Startup
+        Ajouter un événement
       </h2>
 
       <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
         <div>
           <label className="block text-[#222e53] font-semibold mb-2">
-            Nom <span className="text-red-500">*</span>
+            Titre <span className="text-red-500">*</span>
           </label>
           <input
             type="text"
-            placeholder="Nom de la startup"
-            {...register("name", {
-              required: "Le nom est requis",
+            placeholder="Titre d'événement"
+            {...register("titre", {
+              required: "Le titre est requis",
               minLength: { value: 3, message: "Min 3 caractères" },
             })}
             className="w-full px-4 py-2 rounded-md border focus:outline-none focus:ring-2 focus:ring-[#222e53]"
           />
-          {errors.name && (
-            <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
+          {errors.titre && (
+            <p className="text-red-500 text-sm mt-1">{errors.titre.message}</p>
           )}
         </div>
 
-        {/* Secteur */}
+    <div>
+          <label className="block text-[#222e53] font-semibold mb-2">
+            ville <span className="text-red-500">*</span>
+          </label>
+          <input
+            type="text"
+            placeholder="Ville d'événement"
+            {...register("ville", {
+              required: "Le ville est requis",
+              minLength: { value: 3, message: "Min 3 caractères" },
+            })}
+            className="w-full px-4 py-2 rounded-md border focus:outline-none focus:ring-2 focus:ring-[#222e53]"
+          />
+          {errors.ville && (
+            <p className="text-red-500 text-sm mt-1">{errors.ville.message}</p>
+          )}
+        </div>
+
+
         <div>
           <label className="block text-[#222e53] font-semibold mb-2">
-            Secteur <span className="text-red-500">*</span>
+            Date <span className="text-red-500">*</span>
           </label>
-          <select
-            {...register("sector", { required: "Le secteur est requis" })}
+          <input
+            type="date"
+            {...register("date", { required: "La date est requise" })}
             className="w-full px-4 py-2 rounded-md border focus:outline-none focus:ring-2 focus:ring-[#222e53]"
-          >
-            <option value="">-- Choisir un secteur --</option>
-            {sectors.map((s) => (
-              <option key={s.id} value={s.id}>
-                {s.name}
-              </option>
-            ))}
-          </select>
-          {errors.sector && (
-            <p className="text-red-500 text-sm mt-1">{errors.sector.message}</p>
+          />
+          {errors.date && (
+            <p className="text-red-500 text-sm mt-1">{errors.date.message}</p>
           )}
         </div>
 
+
+<div>
+          <label className="block text-[#222e53] font-semibold mb-2">
+            place <span className="text-red-500">*</span>
+          </label>
+          <input
+            type="text"
+            placeholder="Place d'événement"
+            {...register("place", {
+              required: "Le place est requis",
+              minLength: { value: 3, message: "Min 3 caractères" },
+            })}
+            className="w-full px-4 py-2 rounded-md border focus:outline-none focus:ring-2 focus:ring-[#222e53]"
+          />
+          {errors.place && (
+            <p className="text-red-500 text-sm mt-1">{errors.place.message}</p>
+          )}
+        </div>
 
         <div>
           <label className="block text-[#222e53] font-semibold mb-2">
@@ -164,7 +194,6 @@ function AddStartup() {
           {errors.image && (
             <p className="text-red-500 text-sm mt-1">{errors.image.message}</p>
           )}
-    
         </div>
 
         <button
@@ -178,4 +207,4 @@ function AddStartup() {
   );
 }
 
-export default AddStartup;
+export default AddEvent

@@ -7,7 +7,7 @@ function Layout() {
     <>
      <Navbar />
 
-     <main className="m-20 " >
+     <main className=" m-3 mt-28 lg:m-20  " >
         <Outlet />
      </main>
     

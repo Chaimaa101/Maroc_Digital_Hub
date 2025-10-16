@@ -1,35 +1,16 @@
-import React from 'react'
-import EventCard from '../components/ManageCard';
+import React, { useEffect } from 'react'
+import { fetchData } from '../store/GlobalSlice';
+import {useDispatch ,useSelector} from "react-redux"
+import EventCard from '../components/EventCard';
 
 function Evenements() {
     
-const events = [
-  {
-    id: 1,
-    name: "Indonesia - Korea Conference",
-    location: "Soekarno, Yogyakarta, Indonesia",
-    image: "src/assets/HOME3.jpg",
-    price: 10,
-    date: { month: "Sep", day: 18 },
-  },
-  {
-    id: 2,
-    name: "Dream World Wide in Jakarta",
-    location: "Seohanna, Yogyakarta, Indonesia",
-    image: "src/assets/HOME3.jpg",
-    price: 0,
-    date: { month: "Sep", day: 17 },
-  },
-  {
-    id: 3,
-    name: "Pesta Kembang Api Terbesar",
-    location: "Seohanna, Yogyakarta, Indonesia",
-    image: "src/assets/HOME3.jpg",
-    price: 12,
-    date: { month: "Sep", day: 16 },
-  },
-];
+  const dispatch = useDispatch();
+  const events = useSelector((state) => state.allData.data.evenements) || [];
 
+  useEffect(() => {
+    dispatch(fetchData("evenements"));
+  }, [dispatch]);
   return (
     <>
        <div className="min-h-screen bg-gray-50 flex justify-center py-12">

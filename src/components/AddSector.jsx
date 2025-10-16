@@ -5,9 +5,7 @@ import { useEffect, useState } from "react";
 import { ajouter, fetchData } from "../store/GlobalSlice";
 
 
-function AddStartup() {
-  const dispatch = useDispatch();
-  const sectors = useSelector((state) => state.allData.data.sectors || [])
+function AddSector() {
 
   const [imagePreview, setImagePreview] = useState(null);
 
@@ -18,12 +16,6 @@ function AddStartup() {
     reset,
     setValue, 
   } = useForm();
-
-  useEffect(() => {
-    dispatch(fetchData("sectors"));
-
-  }, [dispatch]);
-
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -41,16 +33,14 @@ function AddStartup() {
   const onSubmit = (data) => {
 
 
-    const startupData = {
+    const sectorData = {
       name: data.name,
-      sectorId: data.sector,
-      date: data.date,
       description: data.description,
-      image: imagePreview || startup.image || "default.jpg",
+      image: imagePreview || Sector.image || "default.jpg",
     };
 
-      dispatch(ajouter({ section: "startups", newItem: startupData }));
-      console.log("Ajout :", startupData);
+      dispatch(ajouter({ section: "sectors", newItem: sectorData }));
+      console.log("Ajout :", sectorData);
 
     reset();
     setImagePreview(null);
@@ -60,7 +50,7 @@ function AddStartup() {
   return (
     <div className=" rounded-xl shadow-lg w-full max-w-2xl mx-auto p-10">
       <h2 className="text-2xl font-bold text-center text-[#222e53] mb-8">
-        Ajouter une Startup
+        Ajouter une Sector
       </h2>
 
       <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
@@ -70,7 +60,7 @@ function AddStartup() {
           </label>
           <input
             type="text"
-            placeholder="Nom de la startup"
+            placeholder="Nom de la Sector"
             {...register("name", {
               required: "Le nom est requis",
               minLength: { value: 3, message: "Min 3 caractères" },
@@ -82,27 +72,6 @@ function AddStartup() {
           )}
         </div>
 
-        {/* Secteur */}
-        <div>
-          <label className="block text-[#222e53] font-semibold mb-2">
-            Secteur <span className="text-red-500">*</span>
-          </label>
-          <select
-            {...register("sector", { required: "Le secteur est requis" })}
-            className="w-full px-4 py-2 rounded-md border focus:outline-none focus:ring-2 focus:ring-[#222e53]"
-          >
-            <option value="">-- Choisir un secteur --</option>
-            {sectors.map((s) => (
-              <option key={s.id} value={s.id}>
-                {s.name}
-              </option>
-            ))}
-          </select>
-          {errors.sector && (
-            <p className="text-red-500 text-sm mt-1">{errors.sector.message}</p>
-          )}
-        </div>
-
 
         <div>
           <label className="block text-[#222e53] font-semibold mb-2">
@@ -110,7 +79,7 @@ function AddStartup() {
           </label>
           <textarea
             rows="4"
-            placeholder="Décrivez votre startup"
+            placeholder="Décrivez votre Sector"
             {...register("description", {
               required: "La description est requise",
               minLength: { value: 10, message: "Min 10 caractères" },
@@ -126,7 +95,7 @@ function AddStartup() {
 
         <div>
           <label className="block text-[#222e53] font-semibold mb-2">
-            Logo  <span className="text-red-500">*</span>
+            Image  <span className="text-red-500">*</span>
           </label>
           <label
             htmlFor="imageUpload"
@@ -178,4 +147,4 @@ function AddStartup() {
   );
 }
 
-export default AddStartup;
+export default AddSector;

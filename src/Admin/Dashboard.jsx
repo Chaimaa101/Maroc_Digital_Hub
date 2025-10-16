@@ -1,40 +1,31 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import { useSelector ,useDispatch} from "react-redux";
+import { fetchData } from '../store/GlobalSlice';
+import { FaCreativeCommons, FaEnvelopeOpenText, FaFastForward, FaPeopleCarry, FaSass, FaStoreAlt } from 'react-icons/fa';
+import { FaBusinessTime, FaFaceSadTear, FaPeopleGroup, FaPeopleRobbery, FaSection } from 'react-icons/fa6';
 
-const AdminDashboard = () => {
-  const [activeTab, setActiveTab] = useState('overview');
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+const Dashboard = () => {
+    const dispatch = useDispatch();
 
-  // Données des utilisateurs
-  const users = [
-    { id: 1, name: 'Niketa William', location: 'Paris', status: 'active', role: 'Startup', joinDate: '2024-01-15' },
-    { id: 2, name: 'Trisha Louis', location: 'London', status: 'active', role: 'Investor', joinDate: '2024-01-10' },
-    { id: 3, name: 'Ana Tomas', location: 'USA', status: 'pending', role: 'Startup', joinDate: '2024-01-20' },
-    { id: 4, name: 'John Smith', location: 'Berlin', status: 'active', role: 'Admin', joinDate: '2024-01-05' },
-    { id: 5, name: 'Maria Garcia', location: 'Madrid', status: 'inactive', role: 'Startup', joinDate: '2024-01-12' }
-  ];
+    const startups = useSelector((state) => state.allData.data.startups) || [];
+    const evenements = useSelector((state) => state.allData.data.evenements) || [];
+    const sectors = useSelector((state) => state.allData.data.sectors) || [];
+    const users = useSelector((state) => state.allData.data.users) || [];
 
-  // Données des startups
-  const startups = [
-    { id: 1, name: 'TechInnovate', category: 'Technology', status: 'approved', founder: 'Niketa William', created: '2024-01-15' },
-    { id: 2, name: 'EcoSolutions', category: 'Environment', status: 'pending', founder: 'Ana Tomas', created: '2024-01-20' },
-    { id: 3, name: 'HealthTech Pro', category: 'Healthcare', status: 'approved', founder: 'Trisha Louis', created: '2024-01-10' },
-    { id: 4, name: 'FinTech Plus', category: 'Finance', status: 'rejected', founder: 'John Smith', created: '2024-01-08' }
-  ];
+  useEffect(() => {
+    dispatch(fetchData("startups"));
+    dispatch(fetchData("evenements"));
+    dispatch(fetchData("sectors"));
+    dispatch(fetchData("users"));
+  }, [dispatch]);
+  
 
-  // Données des événements
-  const events = [
-    { id: 1, title: 'Pitch Day 2024', date: '2024-02-15', participants: 45, status: 'upcoming' },
-    { id: 2, title: 'Investor Meetup', date: '2024-02-20', participants: 32, status: 'upcoming' },
-    { id: 3, title: 'Startup Workshop', date: '2024-01-25', participants: 28, status: 'completed' }
-  ];
-
-  // Statistiques
   const stats = {
-    totalUsers: 125,
-    totalStartups: 45,
-    pendingApprovals: 12,
-    forumPosts: 89
+    totalUsers: users.length,
+    totalStartups: startups.length,
+    totalEvents: evenements.length,
+    totalSectors: sectors.length
   };
 
   return (
@@ -60,7 +51,7 @@ const AdminDashboard = () => {
                       <h3 className="text-2xl font-bold text-gray-800">{stats.totalUsers}</h3>
                     </div>
                     <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                      <span className="text-blue-600 text-xl">👥</span>
+                      <span className="text-blue-600 text-xl"><FaPeopleGroup/></span>
                     </div>
                   </div>
                 </motion.div>
@@ -75,7 +66,7 @@ const AdminDashboard = () => {
                       <h3 className="text-2xl font-bold text-gray-800">{stats.totalStartups}</h3>
                     </div>
                     <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                      <span className="text-green-600 text-xl">🚀</span>
+                      <span className="text-green-600 text-xl"><FaStoreAlt /></span>
                     </div>
                   </div>
                 </motion.div>
@@ -86,11 +77,11 @@ const AdminDashboard = () => {
                 >
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm text-gray-600">En Attente</p>
-                      <h3 className="text-2xl font-bold text-gray-800">{stats.pendingApprovals}</h3>
+                      <p className="text-sm text-gray-600">Evenements</p>
+                      <h3 className="text-2xl font-bold text-gray-800">{stats.totalEvents}</h3>
                     </div>
                     <div className="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center">
-                      <span className="text-yellow-600 text-xl">⏳</span>
+                      <span className="text-yellow-600 text-xl"><FaEnvelopeOpenText /></span>
                     </div>
                   </div>
                 </motion.div>
@@ -101,11 +92,11 @@ const AdminDashboard = () => {
                 >
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm text-gray-600">Posts Forum</p>
-                      <h3 className="text-2xl font-bold text-gray-800">{stats.forumPosts}</h3>
+                      <p className="text-sm text-gray-600">Secteurs</p>
+                      <h3 className="text-2xl font-bold text-gray-800">{stats.totalSectors}</h3>
                     </div>
                     <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
-                      <span className="text-purple-600 text-xl">💬</span>
+                      <span className="text-purple-600 text-xl"><FaBusinessTime/></span>
                     </div>
                   </div>
                 </motion.div>
@@ -118,8 +109,8 @@ const AdminDashboard = () => {
                   <h3 className="text-lg font-semibold text-gray-800 mb-4">Audience Overview</h3>
                   <div className="h-64 bg-gradient-to-br from-blue-50 to-indigo-100 rounded-lg flex items-center justify-center">
                     <div className="text-center">
-                      <div className="text-4xl mb-2">📈</div>
-                      <p className="text-gray-600">Business Graph with Stats</p>
+                      <div className="text-4xl mb-2"></div>
+                      <p className="text-gray-600">Graphs</p>
                     </div>
                   </div>
                 </div>
@@ -134,4 +125,4 @@ const AdminDashboard = () => {
   );
 };
 
-export default AdminDashboard;
+export default Dashboard;

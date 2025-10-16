@@ -1,20 +1,23 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useSelector } from "react-redux";
+import { fetchData, supprimer } from "../store/GlobalSlice";
+import { useDispatch } from "react-redux";
 
 function UsersList() {
-      const users = [
-    { id: 1, name: 'Niketa William', location: 'Paris', status: 'active', role: 'Startup', joinDate: '2024-01-15' },
-    { id: 2, name: 'Trisha Louis', location: 'London', status: 'active', role: 'Investor', joinDate: '2024-01-10' },
-    { id: 3, name: 'Ana Tomas', location: 'USA', status: 'pending', role: 'Startup', joinDate: '2024-01-20' },
-    { id: 4, name: 'John Smith', location: 'Berlin', status: 'active', role: 'Admin', joinDate: '2024-01-05' },
-    { id: 5, name: 'Maria Garcia', location: 'Madrid', status: 'inactive', role: 'Startup', joinDate: '2024-01-12' }
-  ];
+    const dispatch = useDispatch();
+
+  const users = useSelector((state) => state.allData.data.users) || [];
+
+  useEffect(() => {
+    dispatch(fetchData("users"));
+  }, [dispatch]);
   return (
     <>
             <div className="bg-white rounded-xl shadow-sm border border-gray-100">
               <div className="p-6 border-b border-gray-200">
                 <div className="flex justify-between items-center">
                   <h3 className="text-lg font-semibold text-gray-800">Gestion des Utilisateurs</h3>
-                  <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                  <button className="bg-[#eda3a4] text-gray-600 px-4 py-2 rounded-lg hover:bg-[#ce6a6c] transition-colors">
                     + Nouvel Utilisateur
                   </button>
                 </div>
@@ -36,10 +39,10 @@ function UsersList() {
                         <td className="px-6 py-4 whitespace-nowrap">
                           <div className="flex items-center">
                             <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-sm mr-3">
-                              {user.name.split(' ').map(n => n[0]).join('')}
+                              {user.nom.split(' ').map(n => n[0]).join('')}
                             </div>
                             <div>
-                              <div className="text-sm font-medium text-gray-900">{user.name}</div>
+                              <div className="text-sm font-medium text-gray-900">{user.nom}</div>
                               <div className="text-sm text-gray-500">{user.location}</div>
                             </div>
                           </div>
@@ -59,7 +62,7 @@ function UsersList() {
                           </span>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                          {user.joinDate}
+                          {user.createdAt}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                           <div className="flex space-x-2">
