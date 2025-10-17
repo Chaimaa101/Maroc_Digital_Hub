@@ -7,8 +7,7 @@ import { FaTrash } from "react-icons/fa";
 
 function EventsList() {
   const dispatch = useDispatch();
-
-  const events = useSelector((state) => state.allData.data.evenements) || [];
+  const { data, loading, errors } = useSelector((state) => state.allData) || {};
 
   useEffect(() => {
     dispatch(fetchData("evenements"));
@@ -38,6 +37,11 @@ function EventsList() {
             </div>
           </div>
         </div>
+          {loading ? (
+          <div className="p-6 text-center text-gray-600">Chargement...</div>
+        ) : errors ? (
+          <div className="p-6 text-center text-red-600">{errors}</div>
+        ) : (
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead className="bg-gray-50">
@@ -60,7 +64,7 @@ function EventsList() {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
-              {events.map((event) => (
+              {data.evenements.map((event) => (
                 <tr key={event.id} className="hover:bg-gray-50">
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="text-sm font-medium text-gray-900">
@@ -73,7 +77,7 @@ function EventsList() {
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {event.participants}
+                    {event.participants.length}
                   </td>
 
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -88,9 +92,7 @@ function EventsList() {
                             supprimer({ section: "evenements", id: event.id })
                           )
                         }
-                      >
-  
-                        <FaTrash />
+                      > <FaTrash />
                       </button>
                     </div>
                   </td>
@@ -99,7 +101,9 @@ function EventsList() {
             </tbody>
           </table>
         </div>
+         )}
       </div>
+           
     </div>
   );
 }

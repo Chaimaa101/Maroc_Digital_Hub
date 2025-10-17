@@ -2,8 +2,8 @@
   "users": [
     {
       "id": "1",
-      "nom": "Admin ",
-      "prenom": " User",
+      "nom": "admin ",
+      "prenom": "User",
       "email": "admin@mdh.com",
       "password": "admin123",
       "role": "admin"
@@ -11,14 +11,14 @@
     {
       "id": "2",
       "nom": "Tech ",
-      "prenom": "Startup ",
+      "prenom": "startup ",
       "email": "startup@mdh.com",
       "password": "startup123",
       "role": "startup"
     },
     {
       "id": "3",
-      "nom": "Investor ",
+      "nom": "investor ",
       "prenom": "Pro ",
       "email": "investor@mdh.com",
       "password": "investor123",
@@ -26,8 +26,8 @@
     },
     {
       "id": "4",
-      "nom": "Visitor ",
-      "prenom": " User",
+      "nom": "visitor ",
+      "prenom": "User",
       "email": "visitor@mdh.com",
       "password": "visitor123",
       "role": "visitor"
@@ -36,7 +36,7 @@
       "id": "52dd",
       "prenom": "djcjdsdjknc",
       "nom": "djcjnsjkncd",
-      "role": "Startup",
+      "role": "startup",
       "email": "cdjjkdjs@jndcjjd.jsdcjhsd",
       "password": "dshhbhcdqbh"
     },
@@ -44,7 +44,7 @@
       "id": "4caf",
       "prenom": "djcjdsdjknc",
       "nom": "djcjnsjkncd",
-      "role": "Startup",
+      "role": "startup",
       "email": "cdjjkdjs@jndcjjd.jsdcjhsd",
       "password": "dshhbhcdqbh"
     },
@@ -52,7 +52,7 @@
       "id": "8d17",
       "prenom": "bjhv bhfbvh",
       "nom": "dbjhfvbh",
-      "role": "Startup",
+      "role": "startup",
       "email": "nhcdvjnhkdfj@ndn.hncn",
       "password": "jfkjnkvjkgvjk"
     },
@@ -60,7 +60,7 @@
       "id": "4e5d",
       "prenom": "bjhv bhfbvh",
       "nom": "dbjhfvbh",
-      "role": "Startup",
+      "role": "startup",
       "email": "nhcdvjnhkdfj@ndn.hncn",
       "password": "jfkjnkvjkgvjk"
     },
@@ -68,7 +68,7 @@
       "id": "bd0b",
       "prenom": "hh",
       "nom": "dbhsh",
-      "role": "Investisseur",
+      "role": "investor",
       "email": "jnsdj@jhsdsjh.djjd",
       "password": "hhqhfhq"
     },
@@ -76,7 +76,7 @@
       "id": "301b",
       "prenom": "latifa",
       "nom": "hfhfh",
-      "role": "Admin",
+      "role": "admin",
       "email": "",
       "password": ""
     },
@@ -84,7 +84,7 @@
       "id": "e61d",
       "prenom": "hkdjnc",
       "nom": "nadcn3",
-      "role": "Admin",
+      "role": "admin",
       "email": "ndncn@ndqj.ndnsfnv",
       "password": "cskvjkdv"
     },
@@ -92,54 +92,77 @@
       "id": "ea99",
       "prenom": "chaimaa",
       "nom": "afkir",
-      "role": "Startup",
+      "role": "startup",
       "email": "chaimaa@gmail.com",
       "password": "hello890"
     },
     {
       "id": "c428",
-      "prenom": "Admino",
+      "prenom": "admino",
       "nom": "hana",
-      "role": "Admin",
+      "role": "admin",
       "email": "admino@gmail.com",
       "password": "admin890"
+    },
+    {
+      "id": "2a46",
+      "prenom": "chaimaa",
+      "nom": "nani",
+      "role": "admin",
+      "email": "chaimaa@gmail.cm",
+      "password": "hellohello"
+    },
+    {
+      "id": "2ad9",
+      "prenom": "Younes",
+      "nom": "boukrim",
+      "role": "startup",
+      "email": "younes@gmail.com",
+      "password": "chaimaa",
+      "createdAt": "2025-10-17T13:36:56.310Z"
     }
   ],
   "sectors": [
     {
       "id": "1",
-      "name": "Intelligence Artificielle",
-      "icon": "🤖",
+      "titre": "Intelligence Artificielle",
+      "image": "src/assets/logo.jpg",
       "description": "Innovation basée sur l'IA et le machine learning."
     },
     {
       "id": "2",
-      "name": "Fintech",
-      "icon": "💳",
+      "titre": "Fintech",
+      "image": "src/assets/logo.jpg",
       "description": "Solutions financières numériques et paiements innovants."
     },
     {
       "id": "3",
-      "name": "E/commerce",
-      "icon": "🛍️",
+      "titre": "E/commerce",
+      "image": "src/assets/logo.jpg",
       "description": "Plateformes de vente et d'achat en ligne."
     },
     {
       "id": "4",
-      "name": "Tourisme",
-      "icon": "🌍",
+      "titre": "Tourisme",
+      "image": "src/assets/logo.jpg",
       "description": "Applications et plateformes dédiées au tourisme et aux voyages."
     },
     {
       "id": "5",
-      "name": "Éducation",
-      "icon": "🎓",
+      "titre": "Éducation",
+      "image": "src/assets/logo.jpg",
       "description": "Solutions EdTech pour l'apprentissage numérique."
     },
     {
       "id": "6",
-      "name": "Agritech",
-      "icon": "🌾",
+      "titre": "Agritech",
+      "image": "src/assets/logo.jpg",
+      "description": "Innovation technologique pour l'agriculture durable."
+    },
+    {
+      "id": "8",
+      "titre": "Agritech",
+      "image": "src/assets/logo.jpg",
       "description": "Innovation technologique pour l'agriculture durable."
     }
   ],
@@ -147,75 +170,109 @@
     {
       "id": "4",
       "name": "ShopEase",
-      "sectorId": 3,
-      "sector": "E/commerce",
+      "sectorId": "3",
       "description": "Marketplace innovante dédiée aux produits marocains.",
-      "image": "https://i.imgur.com/xl3Bdcd.jpg",
-      "ownerId": 2,
+      "image": "src/assets/logo.jpg",
+      "ownerId": "2",
       "createdAt": "2025/09/20"
     },
     {
       "name": "nono",
       "sectorId": "1",
-      "date": "2025-10-10",
       "description": "xfvxdgvdgtdrgbcdfgxsfgsgh",
-      "image": "blob:http://localhost:5173/c9599f2f-6648-49d7-89ce-527770cb7a99",
+      "ownerId": "3",
+      "image": "src/assets/HOME2.jpg",
       "id": "15"
     },
     {
       "id": "d5bc",
       "name": "HIKBHIKYBG",
-      "ville": "HJKBHJKYBHKUJ",
-      "date": "2025-10-16",
+      "sectorId": "6",
       "description": "JYHBGBUJK BVVBVNHH HJBH",
+      "ownerId": "3",
       "image": "blob:http://localhost:5173/b39a9847-dd72-4d04-949a-322e63daa174",
       "createdAt": "08/10/2025"
     },
     {
       "id": "37b1",
       "name": "jnkjjnhkbgdjk",
-      "sector": "1",
-      "date": "2025-10-10",
+      "sectorId": "4",
       "description": "jrjfjken,n,b,je jkkkkkkkkkkkkkkkkkkkk",
+      "ownerId": "3",
       "image": "blob:http://localhost:5173/550e55da-9262-40b7-bdae-f1f9db391a02",
       "createdAt": "09/10/2025"
     },
     {
       "id": "664e",
       "name": "jldgjjotiort",
-      "sector": "1",
-      "date": "2025-10-11",
+      "sectorId": "6",
       "description": "jhlghui^thu)çt j^fgjhothojklthr",
+      "ownerId": "3",
       "image": "blob:http://localhost:5173/a68b3663-f7e8-4079-a3de-fc18c26d1d82",
       "createdAt": "10/10/2025"
     },
     {
       "id": "c7bd",
       "name": "hoola",
-      "sectorId": "1",
+      "sectorId": "5",
       "description": "nkvjnk;rvjjkrbkjr",
+      "ownerId": "3",
       "image": "blob:http://localhost:5173/0ffb62d3-c3a2-4d6f-973f-25e01aafd352",
       "createdAt": "13/10/2025"
+    },
+    {
+      "id": "9e78",
+      "name": "kdgiogioxdfiogiofs",
+      "sectorId": "3",
+      "description": "dgbfghdghbdh",
+      "ownerId": "3",
+      "image": "blob:http://localhost:5173/5fe33cb9-c637-4258-b2d9-03b0eeff27c0",
+      "createdAt": "1/10/2025"
+    },
+    {
+      "id": "3053",
+      "name": "helllllllllo",
+      "sectorId": "4",
+      "description": "anyyyyyyyythoing",
+      "address": "daaaaaaarna",
+      "ownerId": "2a46",
+      "image": "blob:http://localhost:5173/ebda83a3-2c98-4eb7-b8e0-3e3a151a8cbe",
+      "createdAt": "1/10/2025"
+    },
+    {
+      "id": "d01b",
+      "name": "yyyyyyyyyyyyyyyy",
+      "sectorId": "2",
+      "description": "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "ville": "ttyyyttttttttttttttttttttt",
+      "ownerId": "2a46",
+      "image": "http://localhost:5173/a90a5dd0-f08a-478a-a82e-fa7939ea560f",
+      "createdAt": "2025-10-17T12:48:38.262Z"
     }
   ],
   "evenements": [
     {
       "id": "1",
       "titre": "Hackathon Maroc 2025",
+      "ownerId": "3",
       "description": "Compétition de 48h pour développer des solutions digitales.",
+      "image": "src/assets/HOME2.jpg",
       "ville": "Casablanca",
       "date": "2025/11/15",
       "place": "Technopark Casablanca",
       "participants": [
         2,
-        3
+        3,
+        "2ad9"
       ],
       "createdBy": 2
     },
     {
       "id": "2",
-      "titre": "Forum des Startups Africaines",
-      "description": "Événement de networking entre investisseurs et startups africaines.",
+      "titre": "Forum des startups Africaines",
+      "ownerId": "2a46",
+      "description": "Événement de networking entre investors et startups africaines.",
+      "image": "src/assets/HOME2.jpg",
       "ville": "Rabat",
       "date": "2025/12/05",
       "place": "UM6P Rabat",
@@ -227,14 +284,17 @@
     {
       "id": "3",
       "titre": "Fintech Days 2025",
+      "ownerId": "1",
       "description": "Conférences et ateliers sur l'innovation financière.",
+      "image": "src/assets/HOME2.jpg",
       "ville": "Marrakech",
       "date": "2025/10/20",
       "place": "Palmeraie Conference Center",
       "participants": [
         2,
         3,
-        4
+        4,
+        "2a46"
       ],
       "createdBy": 2
     },
@@ -242,9 +302,15 @@
       "id": "0b76",
       "titre": "hooooooooola",
       "ville": "new j;kefjkve",
+      "ownerId": "3",
       "date": "2025-10-23",
       "place": "ejnkfchkzeucrvfe",
       "description": "jezrcfvzecfvukguef cjnuhehizeircvze",
+      "participants": [
+        2,
+        3,
+        4
+      ],
       "image": "blob:http://localhost:5173/16019d3d-83d4-4db1-be45-e8879b1ffde3",
       "createdAt": "13/10/2025"
     }
@@ -253,23 +319,62 @@
     {
       "id": "1",
       "userId": 3,
-      "username": "Investor Pro",
+      "username": "investor Pro",
       "content": "Quels sont les secteurs les plus prometteurs pour 2025 selon vous ?",
       "createdAt": "2025/10/01T10:30:00"
     },
     {
       "id": "2",
       "userId": 2,
-      "username": "Tech Startup",
+      "username": "Tech startup",
       "content": "L'IA et la Fintech dominent actuellement les levées de fonds.",
       "createdAt": "2025/10/01T11:00:00"
     },
     {
       "id": "3",
       "userId": 4,
-      "username": "Visitor User",
+      "username": "visitor User",
       "content": "Merci pour vos conseils ! Où puis/je suivre les prochains événements ?",
       "createdAt": "2025/10/02T09:00:00"
+    },
+    {
+      "id": "1946",
+      "userId": "2a46",
+      "username": "nani chaimaa",
+      "createdAt": "2025-10-16T19:34:18.277Z"
+    },
+    {
+      "id": "407c",
+      "userId": "2a46",
+      "username": "nani chaimaa",
+      "createdAt": "2025-10-16T20:10:56.606Z"
+    },
+    {
+      "id": "e19a",
+      "userId": "2a46",
+      "username": "nani chaimaa",
+      "createdAt": "2025-10-16T20:11:09.289Z"
+    },
+    {
+      "id": "8e9d",
+      "userId": "2a46",
+      "username": "nani chaimaa",
+      "content": "ryhnfhnyfhnfhnfyry",
+      "createdAt": "2025-10-16T20:18:20.034Z"
+    },
+    {
+      "id": "1753",
+      "userId": "2a46",
+      "username": "nani chaimaa",
+      "content": "gfvdxfgd",
+      "createdAt": "2025-10-16T23:28:51.046Z"
+    },
+    {
+      "id": "bb67",
+      "userId": "2ad9",
+      "username": "boukrim Younes",
+      "content": "HHHHHHHHHHHHHHHHH",
+      "createdAt": "2025-10-17T13:43:52.656Z"
     }
   ]
 }

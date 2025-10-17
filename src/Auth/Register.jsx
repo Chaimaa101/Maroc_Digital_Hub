@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useSelector, useDispatch } from "react-redux";
 import { registerUser } from "../store/AuthSlice";
@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 export default function Register() {
   const dispatch = useDispatch();
   const { loading, error } = useSelector((state) => state.auth);
-
+  const navigate = useNavigate()
   const {
     register,
     handleSubmit,
@@ -16,7 +16,9 @@ export default function Register() {
   } = useForm();
 
   const onSubmit = (data) => {
+    data.createdAt = new Date().toLocaleDateString()
     dispatch(registerUser(data));
+    navigate("/login")
   };
 
   return (
@@ -71,10 +73,10 @@ export default function Register() {
           })}
           className="w-full px-4 py-3 rounded-xl bg-white text-[#222e53] border border-[#4b919e] focus:border-[#ce6a6c] focus:ring-1 focus:ring-[#ce6a6c] outline-none"
         >
-          <option value="Visiteur">Visiteur</option>
-          <option value="Admin">Admin</option>
-          <option value="Investisseur">Investisseur</option>
-          <option value="Startup">Startup</option>
+          <option value="visiteur">Visiteur</option>
+          <option value="admin">Admin</option>
+          <option value="investor">Investisseur</option>
+          <option value="startup">Startup</option>
         </select>
         {errors.role && (
           <p className="text-red-500 text-sm mt-1">{errors.role.message}</p>

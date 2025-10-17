@@ -16,6 +16,9 @@ import AddEvent from "./components/AddEvent"
 import SectorList from "./Admin/SectorsList"
 import AddSector from "./components/AddSector"
 import Startups from "./pages/Startups"
+import { ProtectedRoute } from "./services/ProtectedRoute"
+
+
 
 function App() {
  
@@ -28,17 +31,17 @@ function App() {
     <Route path="/login" element={<Login />} />
     <Route path="/register" element={<Register />} />
     <Route path="/events" element={<Evenements />} />
-    <Route path="/myevents" element={<Myevents />} />
+    <Route path="/myevents" element={ <ProtectedRoute allowedRoles={[ "startup", "investor", "admin"]}><Myevents /></ProtectedRoute>} />
     <Route path="/forum" element={<Forum />} />
-    <Route path="/Dashboard" element={<Dashboard />} />
-    <Route path="/addevent" element={<AddEvent />} />
-    <Route path="/addstartup" element={<AddStartup/>} />
+    <Route path="/Dashboard" element={ <ProtectedRoute allowedRoles={["admin"]}><Dashboard /></ProtectedRoute>} />
+    <Route path="/addevent" element={<ProtectedRoute allowedRoles={[ "startup",, "investor", "admin"]}> <AddEvent /> </ProtectedRoute>} />
+    <Route path="/addstartup" element={<ProtectedRoute  allowedRoles={[ "startup", "admin"]}>  <AddStartup/> </ProtectedRoute>} />
     <Route path="/startups" element={<Startups />} />
-    <Route path="/addSector" element={<AddSector />} />
+    <Route path="/addSector" element={ <ProtectedRoute  allowedRoles={["admin"]}><AddSector /></ProtectedRoute>} />
     <Route path="/liststartup" element={<StartupsList />} />
-    <Route path="/listevents" element={<EventsList />} />
-    <Route path="/listusers" element={<UsersList />} />
-    <Route path="/listsectors" element={<SectorList />} />
+    <Route path="/listevents" element={<ProtectedRoute allowedRoles={["admin"]}><EventsList /> </ProtectedRoute>} />
+    <Route path="/listusers" element={ <ProtectedRoute allowedRoles={["admin"]}><UsersList /></ProtectedRoute>} />
+    <Route path="/listsectors" element={ <ProtectedRoute allowedRoles={["admin"]}><SectorList /></ProtectedRoute>} />
    
     </Route>
    </Routes>

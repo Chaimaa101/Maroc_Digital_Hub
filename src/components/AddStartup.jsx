@@ -3,11 +3,13 @@ import { FaCloudUploadAlt } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { ajouter, fetchData } from "../store/GlobalSlice";
-
+import { useNavigate } from "react-router-dom";
 
 function AddStartup() {
   const dispatch = useDispatch();
-  const sectors = useSelector((state) => state.allData.data.sectors || [])
+  const navigate = useNavigate();
+  const sectors = useSelector((state) => state.allData.data.sectors || []);
+  const { user } = useSelector((state) => state.auth);
 
   const [imagePreview, setImagePreview] = useState(null);
 
@@ -16,54 +18,47 @@ function AddStartup() {
     handleSubmit,
     formState: { errors },
     reset,
-    setValue, 
+    setValue,
   } = useForm();
 
+  // 🟡 Fetch sectors when the component loads
   useEffect(() => {
     dispatch(fetchData("sectors"));
-
   }, [dispatch]);
-
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
       setImagePreview(URL.createObjectURL(file));
-      setImageFile(file); // ✅ Store the actual file for submission
-      
-      // ✅ Clear any previous image validation errors
-      if (errors.image) {
-        setValue("image", file);
-      }
+      setValue("image", file);
     }
   };
 
   const onSubmit = (data) => {
-
-
     const startupData = {
       name: data.name,
       sectorId: data.sector,
       date: data.date,
       description: data.description,
-      image: imagePreview || startup.image || "default.jpg",
+      ville: data.ville,
+      ownerId: user.id,
+      image: imagePreview || "default.jpg",
     };
 
-      dispatch(ajouter({ section: "startups", newItem: startupData }));
-      console.log("Ajout :", startupData);
-
+    dispatch(ajouter({ section: "startups", newItem: startupData }));
     reset();
     setImagePreview(null);
-    setImageFile(null); 
+    navigate("/startups");
   };
 
   return (
-    <div className=" rounded-xl shadow-lg w-full max-w-2xl mx-auto p-10">
+    <div className="rounded-xl shadow-lg w-full max-w-2xl mx-auto p-10">
       <h2 className="text-2xl font-bold text-center text-[#222e53] mb-8">
         Ajouter une Startup
       </h2>
 
       <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
+        {/* NOM */}
         <div>
           <label className="block text-[#222e53] font-semibold mb-2">
             Nom <span className="text-red-500">*</span>
@@ -82,7 +77,7 @@ function AddStartup() {
           )}
         </div>
 
-        {/* Secteur */}
+        {/* SECTEUR */}
         <div>
           <label className="block text-[#222e53] font-semibold mb-2">
             Secteur <span className="text-red-500">*</span>
@@ -94,7 +89,7 @@ function AddStartup() {
             <option value="">-- Choisir un secteur --</option>
             {sectors.map((s) => (
               <option key={s.id} value={s.id}>
-                {s.name}
+                {s.titre}
               </option>
             ))}
           </select>
@@ -103,7 +98,26 @@ function AddStartup() {
           )}
         </div>
 
+        {/* VILLE */}
+        <div>
+          <label className="block text-[#222e53] font-semibold mb-2">
+            Ville <span className="text-red-500">*</span>
+          </label>
+          <input
+            type="text"
+            placeholder="Ville de la startup"
+            {...register("ville", {
+              required: "La ville est requise",
+              minLength: { value: 3, message: "Min 3 caractères" },
+            })}
+            className="w-full px-4 py-2 rounded-md border focus:outline-none focus:ring-2 focus:ring-[#222e53]"
+          />
+          {errors.ville && (
+            <p className="text-red-500 text-sm mt-1">{errors.ville.message}</p>
+          )}
+        </div>
 
+        {/* DESCRIPTION */}
         <div>
           <label className="block text-[#222e53] font-semibold mb-2">
             Description <span className="text-red-500">*</span>
@@ -124,9 +138,10 @@ function AddStartup() {
           )}
         </div>
 
+        {/* IMAGE */}
         <div>
           <label className="block text-[#222e53] font-semibold mb-2">
-            Logo  <span className="text-red-500">*</span>
+            Logo <span className="text-red-500">*</span>
           </label>
           <label
             htmlFor="imageUpload"
@@ -139,7 +154,9 @@ function AddStartup() {
                   alt="Preview"
                   className="w-40 h-40 object-cover rounded-lg shadow-md mb-2"
                 />
-                <span className="text-[#222e53]">Cliquer pour changer l'image</span>
+                <span className="text-[#222e53]">
+                  Cliquer pour changer l'image
+                </span>
               </div>
             ) : (
               <div className="flex flex-col items-center">
@@ -161,17 +178,14 @@ function AddStartup() {
             onChange={handleImageChange}
             className="hidden"
           />
-          {errors.image && (
-            <p className="text-red-500 text-sm mt-1">{errors.image.message}</p>
-          )}
-    
         </div>
 
+        {/* SUBMIT BUTTON */}
         <button
           type="submit"
           className="w-full py-3 rounded-md bg-[#222e53] text-white font-semibold hover:bg-indigo-500 transition-colors"
         >
-         Ajouter
+          Ajouter
         </button>
       </form>
     </div>

@@ -46,7 +46,7 @@ const slides = [
           className="py-2 px-6 font-semibold uppercase text-white 
                      bg-[#4b919e] transition-all duration-300 
                      border border-[#4b919e] active:scale-90 
-                     hover:bg-white hover:text-[#4b919e]"
+                     hover:bg-transparent hover:text-[#4b919e]"
         >
           Explorer
         </Link>
@@ -69,7 +69,7 @@ const slides = [
           className="py-2 px-6 font-semibold uppercase text-white 
                      bg-[#222e53] transition-all duration-300 
                      border border-[#222e53] active:scale-90 
-                     hover:bg-white hover:text-[#222e53]"
+                    hover:bg-transparent hover:text-[#222e53]"
         >
           Voir les Événements
         </Link>
@@ -109,14 +109,15 @@ const Hero = () => {
         delay: 3000,
         disableOnInteraction: false,
       }}
-      className="w-full h-[85vh]"
+      className="w-full h-[80vh]"
     >
       {slides.map((slide, index) => (
         <SwiperSlide key={index}>
           <div
-            className="h-full bg-cover bg-center relative"
+            className="h-full bg-cover bg-center relative "
             style={{ backgroundImage: `url(${slide.backgroundImage})` }}
           >
+            <div className="absolute inset-0 bg-black/60"></div>
             {slide.content}
           </div>
         </SwiperSlide>

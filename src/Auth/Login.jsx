@@ -9,25 +9,20 @@ export default function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { user, loading, error } = useSelector((state) => state.auth);
+  const { user, loading, error } = useSelector((state) =>state.auth);
   const { register, handleSubmit, formState: { errors }, } = useForm();
-
-  console.log(user)
   const onSubmit = (data) => {
-    dispatch(loginUser(data));
-    console.log(data);
+    dispatch(loginUser(data))
   };
-  useEffect(() => {
     if (user) {
-      if (user.role === "Admin") {
-        navigate("/dashboard");
-      } else if (user.role === "Startup") {
-        navigate("/"); // home page
-      } else {
-        navigate("/"); // default route
+        if (user.role === "Admin") {
+          navigate("/dashboard");
+        } else if (user.role === "Startup") {
+          navigate("/"); // home page
+        } else {
+          navigate("/"); // default route
+        }
       }
-    }
-  }, [user, navigate]);
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }} // 👈 Start invisible and slide down
