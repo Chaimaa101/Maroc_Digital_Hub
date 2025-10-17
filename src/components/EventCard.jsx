@@ -26,11 +26,11 @@ const EventCard = ({ event }) => {
     });
   };
 
-  const isParticipating = event.participants.includes(user.id);
+  const isParticipating = event?.participants.includes(user.id);
 
   return (
     <motion.div
-      className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all h-96 duration-300 max-w-sm"
+      className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all h-96 w-72 duration-300 max-w-sm"
       whileHover={{ y: -5 }}
     >
       <div className="relative h-48 bg-cover bg-center bg-gray-300" style={{ backgroundImage: `url(${event.image})` }}>

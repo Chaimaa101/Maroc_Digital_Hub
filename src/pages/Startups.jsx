@@ -32,28 +32,6 @@ const Startups = () => {
     return startups;
 }, [activeSector, startups]);
 
-  // Animation variants for the cards
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.5,
-        ease: "easeOut"
-      }
-    }
-  };
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -64,7 +42,6 @@ const Startups = () => {
       />
 
       <motion.div
-        variants={containerVariants}
         initial="hidden"
         animate="visible"
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
@@ -76,7 +53,7 @@ const Startups = () => {
             startup={startup}
             owner={users.find(user => user.id === startup.ownerId) || null}
             sector={sectors.find(sc => sc.id === startup.sectorId) || null}
-            itemVariants={itemVariants}
+
           />
         ))}
       </motion.div>

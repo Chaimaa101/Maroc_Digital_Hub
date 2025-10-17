@@ -24,7 +24,7 @@ export const ajouter = createAsyncThunk(
       }
       finalData.createdAt = new Date();
       const res = await api.post(`/${section}`, finalData);
-      toast.success(`✅ ${section} ajouté avec succès !`);
+      toast.success(` ${section} ajouté avec succès !`);
       return { section, data: res.data };
     } catch (error) {
       console.error("Erreur lors de l'ajout:", error);
@@ -47,8 +47,8 @@ export const participate = createAsyncThunk(
         if (!updatedParticipants.includes(ownerid)) {
           updatedParticipants.push(ownerid);
         } else {
-          toast.error("⚠️ Vous participez déjà à cet événement !");
-          return event; // ne rien changer
+          toast.error("Vous participez déjà à cet événement !");
+          return { event, updatedEvent: event }; // ne rien changer
         }
       } else {
         if (updatedParticipants.includes(ownerid)) {
@@ -56,8 +56,8 @@ export const participate = createAsyncThunk(
             (up) => up !== ownerid
           );
         } else {
-          toast.error("⚠️ Vous n'êtes pas encore inscrit à cet événement !");
-          return event;
+          toast.error("Vous n'êtes pas encore inscrit à cet événement !");
+          return { event, updatedEvent: event };
         }
       }
 
@@ -69,13 +69,13 @@ export const participate = createAsyncThunk(
       // ✅ Message succès après réussite
       toast.success(
         action === "participer"
-          ? "🎉 Vous avez participé à l'événement !"
-          : "❌ Vous vous êtes désinscrit avec succès."
+          ? " Vous avez participé à l'événement !"
+          : " Vous vous êtes désinscrit avec succès."
       );
 
-      return res.data;
+      return { event, updatedEvent: res.data };
     } catch (error) {
-      toast.error("❌ Erreur lors de la participation à l'événement");
+      toast.error("Erreur lors de la participation à l'événement");
       return rejectWithValue(error.response?.data || error.message);
     }
   }
@@ -86,11 +86,11 @@ export const supprimer = createAsyncThunk(
   async ({ section, id }, { rejectWithValue }) => {
     try {
       await api.delete(`/${section}/${id}`);
-      toast.success(`✅ ${section} supprimé !`);
+      toast.success(`${section} supprimé !`);
       return { section, id };
     } catch (error) {
-      console.error("❌ Erreur lors de la suppression:", error);
-      toast.error(`❌ Erreur lors de la suppression de ${section}`);
+      console.error(" Erreur lors de la suppression:", error);
+      toast.error(` Erreur lors de la suppression de ${section}`);
       return rejectWithValue(error.response?.data || error.message);
     }
   }
@@ -103,19 +103,18 @@ export const fetchById = createAsyncThunk(
     return { section, data: res.data };
   }
 );
-
 const globalSlice = createSlice({
   name: "global",
   initialState: {
-  data: {
-    users: [],
-    startups: [],
-    sectors: [],
-    evenements: []
+    data: {
+      users: [],
+      startups: [],
+      sectors: [],
+      evenements: []
+    },
+    loading: false,
+    errors: null
   },
-  loading: false,
-  errors: null
-},
   extraReducers: (builder) => {
     builder
       .addCase(fetchData.pending, (state) => {
@@ -150,8 +149,19 @@ const globalSlice = createSlice({
         state.data[`${section}Selected`] = data;
       })
       .addCase(participate.fulfilled, (state, action) => {
-        const { section, data } = action.payload;
-        state.data[`${section}Selected`] = data;
+        const { updatedEvent } = action.payload;
+        
+        // Update the specific event in the evenements array
+        const eventIndex = state.data.evenements.findIndex(
+          event => event.id === updatedEvent.id
+        );
+        
+        if (eventIndex !== -1) {
+          state.data.evenements[eventIndex] = updatedEvent;
+        }
+        
+        // Also update the selected event if it exists
+        state.data.evenementsSelected = updatedEvent;
       })
   },
 });

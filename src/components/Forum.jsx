@@ -90,8 +90,6 @@ requireAuth(user, () => {
       New
     </div>
   )}
-
-                  
                   <h3 className="text-lg font-semibold text-gray-900 mb-3">{thread.content}</h3>
                   
                   <div className="flex items-center text-sm text-gray-500">

@@ -3,12 +3,13 @@ import { FaCloudUploadAlt } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { ajouter, fetchData } from "../store/GlobalSlice";
+import { useNavigate } from "react-router-dom";
 
 function AddEvent() {
   
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const sectors = useSelector((state) => state.allData.data.sectors || [])
-
+  
   const [imagePreview, setImagePreview] = useState(null);
 
   const {
@@ -18,12 +19,6 @@ function AddEvent() {
     reset,
     setValue, 
   } = useForm();
-
-  useEffect(() => {
-    dispatch(fetchData("sectors"));
-
-  }, [dispatch]);
-
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -45,12 +40,13 @@ function AddEvent() {
       date: data.date,
       place: data.place,
       description: data.description,
+      participants: [],
       image: imagePreview || startup.image || "default.jpg",
     };
 
       dispatch(ajouter({ section: "evenements", newItem: eventData }));
       console.log("Ajout :", eventData);
-
+navigate("/events")
     reset();
     setImagePreview(null);
     setImageFile(null); 

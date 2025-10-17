@@ -8,7 +8,7 @@ function Footer() {
       <footer className="bg-[#bed3c3] text-[#222e53] pt-5 f">
         <div className="max-w-6xl mx-auto px-6">
 
-          <h2 className="logo text-2xl font-bold mb-6">ArtConnect Maroc</h2>
+          <h2 className="logo text-2xl font-bold mb-6"> Maroc Digital H</h2>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             

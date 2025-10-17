@@ -17,17 +17,17 @@ function SectorList() {
 
 
   return (
-    <>
+    <div className="grid grid-cols-3 gap-6 my-10">
      {sectors.map((sector, index) => (
-           <div key={sector.id} className=" mx-10">
-              <div className={`w-12 h-12 flex items-center justify-center rounded-full mb-4 ${sector.color}`}>
-                {sector.icon}
+           <div key={sector.id} className=" mx-10 bg-fuchsia-200 p-6">
+              <div className={`w-20 h-20 flex items-center justify-center rounded-full mb-4`}>
+                <img src={sector.image} alt="" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">{sector.name}</h3>
+              <h3 className="text-xl font-semibold mb-2">{sector.titre}</h3>
               <p className="text-gray-600 text-sm">{sector.description}</p>
             </div>
           ))}
-    </>
+    </div>
     )
     
 }

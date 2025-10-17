@@ -8,7 +8,7 @@ export const registerUser = createAsyncThunk(
   async (userData, { rejectWithValue }) => {
     try {
        await api.post("/users", userData);
-      toast.success("User registered successfully ✅");
+      toast.success("Utilisateur enregistré avec succès");
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -24,11 +24,11 @@ export const loginUser = createAsyncThunk(
       const user = res.data[0];
 
       if (!user) {
-        throw new Error("User not found ❌");
+        throw new Error("User not found ");
       }
 
       if (user.password !== password) {
-        throw new Error("Invalid password ❌");
+        throw new Error("Invalid password ");
       }
 
       const fakeToken = Math.random().toString(36).substring(2);
@@ -36,7 +36,7 @@ export const loginUser = createAsyncThunk(
       localStorage.setItem("token", fakeToken);
       localStorage.setItem("user", JSON.stringify(user));
 
-      toast.success("done")
+      toast.success("vous êtes connecté avec succès")
       return { user, token: fakeToken };
     } catch (error) {
       return rejectWithValue(error.message);

@@ -18,12 +18,12 @@ export const ProtectedRoute = ({ children, allowedRoles = [] }) => {
   useEffect(() => {
     // ❌ Case 1: user is not logged in
     if (!user) {
-      toast.warning("⚠️ Please login to access this page");
+      toast.warning(" Veuillez vous connecter pour accéder à cette page");
     }
 
     // ❌ Case 2: user is logged in but doesn't have the right role
     if (user && allowedRoles.length > 0 && !allowedRoles.includes(user.role)) {
-      toast.error("🚫 You are not allowed to access this page");
+      toast.error("Vous n'êtes pas autorisé à accéder à cette page");
     }
   }, [user, allowedRoles]); // Runs again when these values change
 

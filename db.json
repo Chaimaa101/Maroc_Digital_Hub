@@ -166,153 +166,18 @@
       "description": "Innovation technologique pour l'agriculture durable."
     }
   ],
-  "startups": [
-    {
-      "id": "4",
-      "name": "ShopEase",
-      "sectorId": "3",
-      "description": "Marketplace innovante dédiée aux produits marocains.",
-      "image": "src/assets/logo.jpg",
-      "ownerId": "2",
-      "createdAt": "2025/09/20"
-    },
-    {
-      "name": "nono",
-      "sectorId": "1",
-      "description": "xfvxdgvdgtdrgbcdfgxsfgsgh",
-      "ownerId": "3",
-      "image": "src/assets/HOME2.jpg",
-      "id": "15"
-    },
-    {
-      "id": "d5bc",
-      "name": "HIKBHIKYBG",
-      "sectorId": "6",
-      "description": "JYHBGBUJK BVVBVNHH HJBH",
-      "ownerId": "3",
-      "image": "blob:http://localhost:5173/b39a9847-dd72-4d04-949a-322e63daa174",
-      "createdAt": "08/10/2025"
-    },
-    {
-      "id": "37b1",
-      "name": "jnkjjnhkbgdjk",
-      "sectorId": "4",
-      "description": "jrjfjken,n,b,je jkkkkkkkkkkkkkkkkkkkk",
-      "ownerId": "3",
-      "image": "blob:http://localhost:5173/550e55da-9262-40b7-bdae-f1f9db391a02",
-      "createdAt": "09/10/2025"
-    },
-    {
-      "id": "664e",
-      "name": "jldgjjotiort",
-      "sectorId": "6",
-      "description": "jhlghui^thu)çt j^fgjhothojklthr",
-      "ownerId": "3",
-      "image": "blob:http://localhost:5173/a68b3663-f7e8-4079-a3de-fc18c26d1d82",
-      "createdAt": "10/10/2025"
-    },
-    {
-      "id": "c7bd",
-      "name": "hoola",
-      "sectorId": "5",
-      "description": "nkvjnk;rvjjkrbkjr",
-      "ownerId": "3",
-      "image": "blob:http://localhost:5173/0ffb62d3-c3a2-4d6f-973f-25e01aafd352",
-      "createdAt": "13/10/2025"
-    },
-    {
-      "id": "9e78",
-      "name": "kdgiogioxdfiogiofs",
-      "sectorId": "3",
-      "description": "dgbfghdghbdh",
-      "ownerId": "3",
-      "image": "blob:http://localhost:5173/5fe33cb9-c637-4258-b2d9-03b0eeff27c0",
-      "createdAt": "1/10/2025"
-    },
-    {
-      "id": "3053",
-      "name": "helllllllllo",
-      "sectorId": "4",
-      "description": "anyyyyyyyythoing",
-      "address": "daaaaaaarna",
-      "ownerId": "2a46",
-      "image": "blob:http://localhost:5173/ebda83a3-2c98-4eb7-b8e0-3e3a151a8cbe",
-      "createdAt": "1/10/2025"
-    },
-    {
-      "id": "d01b",
-      "name": "yyyyyyyyyyyyyyyy",
-      "sectorId": "2",
-      "description": "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
-      "ville": "ttyyyttttttttttttttttttttt",
-      "ownerId": "2a46",
-      "image": "http://localhost:5173/a90a5dd0-f08a-478a-a82e-fa7939ea560f",
-      "createdAt": "2025-10-17T12:48:38.262Z"
-    }
-  ],
+  "startups": [],
   "evenements": [
     {
-      "id": "1",
-      "titre": "Hackathon Maroc 2025",
-      "ownerId": "3",
-      "description": "Compétition de 48h pour développer des solutions digitales.",
-      "image": "src/assets/HOME2.jpg",
-      "ville": "Casablanca",
-      "date": "2025/11/15",
-      "place": "Technopark Casablanca",
-      "participants": [
-        2,
-        3,
-        "2ad9"
-      ],
-      "createdBy": 2
-    },
-    {
-      "id": "2",
-      "titre": "Forum des startups Africaines",
-      "ownerId": "2a46",
-      "description": "Événement de networking entre investors et startups africaines.",
-      "image": "src/assets/HOME2.jpg",
-      "ville": "Rabat",
-      "date": "2025/12/05",
-      "place": "UM6P Rabat",
-      "participants": [
-        3
-      ],
-      "createdBy": 3
-    },
-    {
-      "id": "3",
-      "titre": "Fintech Days 2025",
-      "ownerId": "1",
-      "description": "Conférences et ateliers sur l'innovation financière.",
-      "image": "src/assets/HOME2.jpg",
-      "ville": "Marrakech",
-      "date": "2025/10/20",
-      "place": "Palmeraie Conference Center",
-      "participants": [
-        2,
-        3,
-        4,
-        "2a46"
-      ],
-      "createdBy": 2
-    },
-    {
-      "id": "0b76",
-      "titre": "hooooooooola",
-      "ville": "new j;kefjkve",
-      "ownerId": "3",
-      "date": "2025-10-23",
-      "place": "ejnkfchkzeucrvfe",
-      "description": "jezrcfvzecfvukguef cjnuhehizeircvze",
-      "participants": [
-        2,
-        3,
-        4
-      ],
-      "image": "blob:http://localhost:5173/16019d3d-83d4-4db1-be45-e8879b1ffde3",
-      "createdAt": "13/10/2025"
+      "titre": "TD?GDJKLBGKLDK",
+      "ville": "DFKLGVDJKLTBGK",
+      "date": "2025-10-26",
+      "place": "VBKLDTMKBK",
+      "description": "STB?KDJHKL4HBKDMKLYH089",
+      "participants": [],
+      "image": "blob:http://localhost:5173/c777d60a-b6a3-4571-bdc6-a8fc7798ba91",
+      "createdAt": "2025-10-17T19:43:49.773Z",
+      "id": 1
     }
   ],
   "forum": [
@@ -375,6 +240,13 @@
       "username": "boukrim Younes",
       "content": "HHHHHHHHHHHHHHHHH",
       "createdAt": "2025-10-17T13:43:52.656Z"
+    },
+    {
+      "userId": "2a46",
+      "username": "nani chaimaa",
+      "content": "sjfvjsfjvjsfdjvjksdf",
+      "createdAt": "2025-10-17T19:09:41.435Z",
+      "id": "VI8g626"
     }
   ]
 }

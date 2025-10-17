@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 
-const StartupCard = ({ startup, itemVariants,owner ,sector}) => {
+const StartupCard = ({ startup,owner ,sector}) => {
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     return date.toLocaleDateString('fr-FR', { 
@@ -16,11 +16,9 @@ const StartupCard = ({ startup, itemVariants,owner ,sector}) => {
   };
 
   return (
-    <motion.article
-      variants={itemVariants}
-      layout
+    <article
       className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-2xl transition-all duration-300 group"
-      whileHover={{ y: -8, transition: { duration: 0.3 } }}
+   
     >
  
       <motion.div 
@@ -66,7 +64,7 @@ const StartupCard = ({ startup, itemVariants,owner ,sector}) => {
           </div>
         </div>
       </div>
-    </motion.article>
+    </article>
   );
 };
 
