@@ -1,38 +1,40 @@
 import { useEffect, useRef, useState } from "react";
 import { BiChevronDown, BiChevronUp } from "react-icons/bi";
-import { FaUser } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaBars, FaTimes } from "react-icons/fa";
+import { FaBars, FaSignOutAlt, FaTimes } from "react-icons/fa";
+import { logout } from "../store/AuthSlice";
+import {useDispatch,useSelector} from "react-redux"
+import { toast } from "react-toastify";
 
 function Navbar() {
   const [openStartup, setOpenStartup] = useState(false);
   const [openEvent, setOpenEvent] = useState(false);
   const [openManage, setOpenManage] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(true); // 👉 Replace with Redux later
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
-  const menuRef = useRef(null);
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth)
+  const navigate = useNavigate()
 
-  // ✅ Close dropdowns when clicking outside
   useEffect(() => {
     const handleClickOutside = (e) => {
-      if (menuRef.current && !menuRef.current.contains(e.target)) {
         setOpenStartup(false);
         setOpenEvent(false);
         setOpenManage(false);
-      }
     };
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   const handleLogout = () => {
-    // 👉 Add your logout logic here (ex: clear token)
-    setIsLoggedIn(false);
+     if (window.confirm("Are you sure you want to logout?")) {
+   dispatch(logout())
+    navigate("/")
+
+   }
   };
 
-  // 🌀 Framer Motion Variants
   const dropdownAnimation = {
     hidden: { opacity: 0, y: 10 },
     visible: { opacity: 1, y: 0 },
@@ -40,12 +42,12 @@ function Navbar() {
   };
 
   return (
-    <header className="w-full top-2 left-0 z-50 fixed mb-14">
+    <header className="w-full top-2 left-0 z-50 fixed">
       <nav
-        ref={menuRef}
+
         className="max-w-7xl mx-auto bg-white rounded-full shadow-md px-6 py-3 flex justify-between items-center relative"
       >
-        {/* Logo */}
+   
         <Link to="/" className="flex items-center gap-2">
           <div className="w-12 h-12 bg-[#4b919e] rounded-lg flex items-center justify-center text-white font-bold">
             MDH
@@ -57,7 +59,7 @@ function Navbar() {
         </Link>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex items-center gap-8 text-[#222e53] font-medium relative">
+        <ul className="hidden lg:flex items-center gap-8 text-[#222e53] font-medium relative">
           <Link to="/" onClick={() => setOpenStartup(false)} className="hover:text-[#4b919e]">
             Home
           </Link>
@@ -138,6 +140,8 @@ function Navbar() {
               )}
             </AnimatePresence>
           </div>
+          {user?.role === "admin" &&(
+<>
 
           <Link to="/dashboard" className="hover:text-[#4b919e]">Dashboard</Link>
 
@@ -169,30 +173,34 @@ function Navbar() {
                 </motion.ul>
               )}
             </AnimatePresence>
-          </div>
+            </div>
+            </>
+          
+          )}
 
           <Link to="/forum" className="hover:text-[#4b919e]">Forum</Link>
-        </ul>
+       
+</ul>
 
-        {/* Auth Button */}
-        {isLoggedIn ? (
-          <button
+        {user ? (
+           <button
             onClick={handleLogout}
-            className="hidden md:block bg-gradient-to-r from-[#4b919e] to-[#eaada2] text-white font-semibold px-6 py-2 rounded-full shadow-md hover:opacity-90 transition"
+            className="hidden lg:block bg-gradient-to-r from-[#4b919e] to-[#eaada2] text-white font-semibold px-6 py-2 rounded-full shadow-md hover:opacity-90 transition"
           >
-            Logout
+            <FaSignOutAlt />
           </button>
         ) : (
           <Link
             to="/login"
-            className="hidden md:block bg-gradient-to-r from-[#4b919e] to-[#eaada2] text-white font-semibold px-6 py-2 rounded-full shadow-md hover:opacity-90 transition"
+            className="hidden lg:block bg-gradient-to-r from-[#4b919e] to-[#eaada2] text-white font-semibold px-6 py-2 rounded-full shadow-md hover:opacity-90 transition"
           >
             Se connecter
           </Link>
+        
         )}
 
         {/* Burger Icon for Mobile */}
-        <div className="md:hidden cursor-pointer" onClick={() => setIsMobileOpen(!isMobileOpen)}>
+        <div className="lg:hidden cursor-pointer" onClick={() => setIsMobileOpen(!isMobileOpen)}>
           {isMobileOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
         </div>
 
@@ -204,14 +212,17 @@ function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ duration: 0.3 }}
-              className="absolute top-16 right-0 w-full bg-white rounded-lg shadow-lg p-6 flex flex-col gap-4 md:hidden z-50"
+              className="absolute top-16 right-3 w-80 bg-white rounded-lg shadow-lg p-6 flex flex-col items-center gap-4 lg:hidden z-50"
             >
               <Link to="/" onClick={() => setIsMobileOpen(false)}>Home</Link>
               <Link to="/startups" onClick={() => setIsMobileOpen(false)}>Startups</Link>
+              <Link to="/addstartup" onClick={() => setIsMobileOpen(false)}>Ajouter startup</Link>
               <Link to="/events" onClick={() => setIsMobileOpen(false)}>Evenements</Link>
+              <Link to="/addevent" onClick={() => setIsMobileOpen(false)}>Evenements</Link>
+              <Link to="/myevents" onClick={() => setIsMobileOpen(false)}>Mes Evenements</Link>
               <Link to="/dashboard" onClick={() => setIsMobileOpen(false)}>Dashboard</Link>
               <Link to="/forum" onClick={() => setIsMobileOpen(false)}>Forum</Link>
-              {isLoggedIn ? (
+              {user ? (
                 <button
                   onClick={() => { handleLogout(); setIsMobileOpen(false); }}
                   className="bg-gradient-to-r from-[#4b919e] to-[#eaada2] text-white font-semibold px-6 py-2 rounded-full shadow-md hover:opacity-90 transition"

@@ -32,7 +32,7 @@ const FilterBar = ({
         className="flex flex-wrap gap-3 overflow-x-auto pb-2 scrollbar-hide"
       >
       
-        <button
+        <motion.button
           key="all"
           variants={filterVariants}
           onClick={() => setActiveSector(null)}
@@ -45,10 +45,10 @@ const FilterBar = ({
           whileTap={{ scale: 0.95 }}
         >
           All Sectors
-        </button>
+        </motion.button>
         
         {sectors.map((sector) => (
-          <button
+          <motion.button
             key={sector.id}
             variants={filterVariants}
             onClick={() => setActiveSector(sector)}
@@ -60,8 +60,8 @@ const FilterBar = ({
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            {sector.name}
-          </button>
+            {sector.titre}
+          </motion.button>
         ))}
       </motion.div>
 

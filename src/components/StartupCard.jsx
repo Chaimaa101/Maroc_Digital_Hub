@@ -1,19 +1,18 @@
 import { motion } from "framer-motion";
 
-const StartupCard = ({ startup, itemVariants }) => {
- 
+const StartupCard = ({ startup, itemVariants,owner ,sector}) => {
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', { 
+    return date.toLocaleDateString('fr-FR', { 
       year: 'numeric', 
+        day: 'numeric' ,
       month: 'short', 
-      day: 'numeric' 
+    
     });
   };
 
-  const getInitials = (owner) => {
-    if (!owner) return 'SU';
-    return owner.split(' ').map(name => name[0]).join('').toUpperCase();
+  const getInitials = (nom,prenom) => {
+    return  nom.charAt(0).toUpperCase()+ prenom.charAt(0).toUpperCase();
   };
 
   return (
@@ -25,15 +24,14 @@ const StartupCard = ({ startup, itemVariants }) => {
     >
  
       <motion.div 
-        className="h-48 bg-cover bg-center relative overflow-hidden"
+        className="h-48 bg-cover bg-center relative overflow-hidden bg-gray-300"
         style={{ backgroundImage: `url(${startup.image})` }}
         whileHover={{ scale: 1.05 }}
         transition={{ duration: 0.4 }}
       >
-        <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300"></div>
         <div className="absolute top-4 left-4">
           <span className="inline-block bg-[#4b919e] text-white text-xs font-semibold px-3 py-1 rounded-full">
-            {formatDate(startup.createdAt)}
+            {sector?.titre}
           </span>
         </div>
       </motion.div>
@@ -42,7 +40,7 @@ const StartupCard = ({ startup, itemVariants }) => {
         <div className="flex justify-between items-center mb-4">
           <span className="text-sm text-gray-500">{formatDate(startup.createdAt)}</span>
           <span className="text-sm font-medium text-[#4b919e] bg-[#4b919e]/10 px-2 py-1 rounded">
-            {startup.sector}
+         {startup?.ville}
           </span>
         </div>
 
@@ -56,14 +54,14 @@ const StartupCard = ({ startup, itemVariants }) => {
 
         <div className="flex items-center pt-4 border-t border-gray-100">
           <div className="w-10 h-10 bg-gradient-to-r from-[#eaada2] to-[#ce6a6c] rounded-full flex items-center justify-center text-white font-bold mr-3">
-            {getInitials(startup.owner)}
+            {getInitials(owner?.nom, owner?.prenom )}
           </div>
           <div>
             <span className="text-gray-700 font-medium block">
-              {startup.owner || 'Startup Owner'}
+              {owner.nom + " " + owner.prenom}
             </span>
             <span className="text-gray-500 text-sm">
-              {startup.role || 'Founder'}
+              {owner.role || 'Founder'}
             </span>
           </div>
         </div>

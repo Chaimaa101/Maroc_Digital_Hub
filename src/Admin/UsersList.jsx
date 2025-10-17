@@ -5,8 +5,8 @@ import { useDispatch } from "react-redux";
 
 function UsersList() {
     const dispatch = useDispatch();
+  const { data, loading, errors } = useSelector((state) => state.allData) || {};
 
-  const users = useSelector((state) => state.allData.data.users) || [];
 
   useEffect(() => {
     dispatch(fetchData("users"));
@@ -22,44 +22,49 @@ function UsersList() {
                   </button>
                 </div>
               </div>
+                {loading ? (
+          <div className="p-6 text-center text-gray-600">Chargement...</div>
+        ) : errors ? (
+          <div className="p-6 text-center text-red-600">{errors}</div>
+        ) : (
               <div className="overflow-x-auto">
                 <table className="w-full">
                   <thead className="bg-gray-50">
                     <tr>
                       <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Utilisateur</th>
                       <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rôle</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Statut</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date Inscription</th>
                       <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-200">
-                    {users.map(user => (
+                    {data.users.map(user => (
                       <tr key={user.id} className="hover:bg-gray-50">
                         <td className="px-6 py-4 whitespace-nowrap">
                           <div className="flex items-center">
-                            <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-sm mr-3">
-                              {user.nom.split(' ').map(n => n[0]).join('')}
+                            <div className="w-8 h-8 bg-gradient-to-r from-[#eaada2] to-[#6a99ce] rounded-full flex items-center justify-center text-white font-bold text-sm mr-3">
+                             { user.nom.charAt(0).toUpperCase()+ user.prenom.charAt(0).toUpperCase()}
                             </div>
                             <div>
-                              <div className="text-sm font-medium text-gray-900">{user.nom}</div>
-                              <div className="text-sm text-gray-500">{user.location}</div>
+                              <div className="text-sm font-medium text-gray-900">{user.nom + " "+ user.prenom}</div>
+
                             </div>
                           </div>
                         </td>
+                       
                         <td className="px-6 py-4 whitespace-nowrap">
-                          <span className="px-2 py-1 text-xs rounded-full bg-blue-100 text-blue-800">
+                          <span className={`px-2 py-1 text-xs rounded-full ${
+                            user.role === 'admin' ? 'text-black bg-indigo-300' : 
+                            user.role === 'startup' ? 'text-black bg-green-200' : 
+                            user.role === 'investor' ? 'text-black bg-orange-200' : 
+                            'bg-gray-200 text-black'
+                          }`}>
                             {user.role}
                           </span>
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          <span className={`px-2 py-1 text-xs rounded-full ${
-                            user.status === 'active' ? 'bg-green-100 text-green-800' : 
-                            user.status === 'pending' ? 'bg-yellow-100 text-yellow-800' : 
-                            'bg-red-100 text-red-800'
-                          }`}>
-                            {user.status}
-                          </span>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          {user.email}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                           {user.createdAt}
@@ -75,6 +80,7 @@ function UsersList() {
                   </tbody>
                 </table>
               </div>
+               )}
             </div>
         
     </>

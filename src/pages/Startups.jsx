@@ -16,8 +16,10 @@ const Startups = () => {
 
   const startups = useSelector((state) => state.allData.data.startups) || [];
   const sectors = useSelector((state) => state.allData.data.sectors) || [];
-
+  const users = useSelector((state) => state.allData.data.users) || [];
+ 
   useEffect(() => {
+    dispatch(fetchData("users"));
     dispatch(fetchData("startups"));
     dispatch(fetchData("sectors"));
   }, [dispatch]);
@@ -67,10 +69,13 @@ const Startups = () => {
         animate="visible"
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
       >
-        {filteredStartups.map((startup) => (
+      {filteredStartups.map((startup) => (
+          
           <StartupCard
             key={startup.id}
             startup={startup}
+            owner={users.find(user => user.id === startup.ownerId) || null}
+            sector={sectors.find(sc => sc.id === startup.sectorId) || null}
             itemVariants={itemVariants}
           />
         ))}

@@ -29,9 +29,8 @@ function AddEvent() {
     const file = e.target.files[0];
     if (file) {
       setImagePreview(URL.createObjectURL(file));
-      setImageFile(file); // ✅ Store the actual file for submission
-      
-      // ✅ Clear any previous image validation errors
+      setImageFile(file); 
+    
       if (errors.image) {
         setValue("image", file);
       }

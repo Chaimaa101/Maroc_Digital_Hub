@@ -16,7 +16,6 @@ export const registerUser = createAsyncThunk(
 );
 
 
-// LOGIN USER
 export const loginUser = createAsyncThunk(
   "auth/loginUser",
   async ({ email, password }, { rejectWithValue }) => {
@@ -37,6 +36,7 @@ export const loginUser = createAsyncThunk(
       localStorage.setItem("token", fakeToken);
       localStorage.setItem("user", JSON.stringify(user));
 
+      toast.success("done")
       return { user, token: fakeToken };
     } catch (error) {
       return rejectWithValue(error.message);
@@ -86,7 +86,9 @@ const authSlice = createSlice({
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
-      });
+      })
+ 
+  
   },
 });
 
